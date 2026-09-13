@@ -411,11 +411,9 @@ async function postPayloadToWhatsAppEndpoint({
 Deno.serve(async (req) => {
   const authHeader = req.headers.get("Authorization");
   const token = authHeader?.replace("Bearer ", "");
- log.info(`Dispatching message SERVICE_ROLE_KEY`, SERVICE_ROLE_KEY);
-    log.info(`token not matching`, token);
+
   if (token !== SERVICE_ROLE_KEY) {
-     log.info(`token not matching`, token);
-    return new Response("Unauthorized", { status: 401 });
+     return new Response("Unauthorized", { status: 401 });
   }
 
   const client = createUnsecureClient();
